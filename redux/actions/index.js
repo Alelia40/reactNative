@@ -1,4 +1,4 @@
-import {latestMovies, movieDetails} from "../../services/latestMovies";
+import {latestMovies, movieDetails, postTransaction} from "../../services/latestMovies";
 
 
 const fetchMovies = () => (dispatch) => {
@@ -19,8 +19,14 @@ const fetchDetails = (id) => (dispatch) => {
     .catch(error => dispatch({type: "GET_DETAILS_ERR", payload:error}))
 }
 
+const addTransaction = (body) => {
+    postTransaction(body)
+    .then(response => console.log(response.json()))
+}
+
 
 export {
     fetchMovies,
-    fetchDetails
+    fetchDetails,
+    addTransaction
 };

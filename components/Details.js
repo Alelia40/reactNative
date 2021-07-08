@@ -47,7 +47,7 @@ function DetailsScreen(props) {
                             </View>
                         </View>
                     </View>
-                    <Button title="Book Now" onPress={() => props.navigation.navigate('Booking', { id: movieId, prices: props.data.prices, currency: props.data.currency })}></Button>
+                    <Button title="Book Now" onPress={() => props.navigation.navigate('Booking', { id: movieId, title: props.data.title, prices: props.data.prices, currency: props.data.currency })}></Button>
                 </View>
             }
         </View>
