@@ -9,14 +9,20 @@ const initialState = {
 const movieReducer = (state = initialState, action) => {
     switch (action.type) {
         case "GET_MOVIES_PENDING":
-            return { ...state, requesting: true };
+            return { ...state, requesting: true, movies: [], searching: false};
         case "GET_MOVIES_DONE":
-            return { ...state, requesting: false, movies: action.payload };
+            return { ...state, requesting: false, movies: action.payload, searching: false };
         case "GET_MOVIES_ERR":
-            return { ...state, requesting: false, error: action.payload };
+            return { ...state, requesting: false, error: action.payload, searching: false };
+        case "GET_SEARCH_PENDING":
+            return { ...state, requesting: true, movies: [], searching: true};
+        case "GET_SEARCH_DONE":
+            return { ...state, requesting: false, movies: action.payload, searching: true};
+        case "GET_SEARCH_ERR":
+            return { ...state, requesting: false, error: action.payload, searching: true};
         case "GET_DETAILS_PENDING":
             return { ...state, requesting: true };
-        case "GET_DETAILS_DONE": 
+        case "GET_DETAILS_DONE":
             return { ...state, requesting: false, detail: action.payload };
         case "GET_DETAILS_ERR":
             return { ...state, requesting: false, error: action.payload };

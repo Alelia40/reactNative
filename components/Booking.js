@@ -37,10 +37,6 @@ function Booking(props) {
         `
     }
 
-    function submitOrder() {
-
-    }
-
     return (
         <View style={styles.container}>
             <View style={styles.bookingForm}>

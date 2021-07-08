@@ -11,12 +11,12 @@ const fetchMovies = () => (dispatch) => {
 }
 
 const fetchMoviesSearch = (query) => (dispatch) => {
-    dispatch({type: "GET_MOVIES_PENDING"});
+    dispatch({type: "GET_SEARCH_PENDING"});
 
     latestMoviesSearch(query)
     .then(response => response.json())
-    .then(data => dispatch({type: "GET_MOVIES_DONE", payload:data}))
-    .catch(error => dispatch({type: "GET_MOVIES_ERR", payload:error}))
+    .then(data => dispatch({type: "GET_SEARCH_DONE", payload:data}))
+    .catch(error => dispatch({type: "GET_SEARCH_ERR", payload:error}))
 }
 
 const fetchDetails = (id) => (dispatch) => {
