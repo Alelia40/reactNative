@@ -1,5 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View, Button, TouchableHighlight } from 'react-native';
+import { TextInput, View, Button, TouchableHighlight } from 'react-native';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { fetchMoviesSearch } from '../redux/actions/index';
 
 function SearchHeader(props) {
 
@@ -7,6 +12,7 @@ function SearchHeader(props) {
 
     function startSearch() {
         console.log("searching - "+ text);
+        props.fetchMoviesSearch(text);
     }
 
     return (
@@ -24,4 +30,16 @@ function SearchHeader(props) {
     )
 }
 
-export default SearchHeader;
+function mapStateToProps(state) {
+    return {
+        data: state.movieReducer.detail,
+        error: state.movieReducer.error,
+        loading: state.movieReducer.requesting
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ fetchMoviesSearch }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchHeader);

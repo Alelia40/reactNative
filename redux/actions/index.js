@@ -1,10 +1,19 @@
-import {latestMovies, movieDetails, postTransaction} from "../../services/latestMovies";
+import {latestMovies, latestMoviesSearch, movieDetails, postTransaction} from "../../services/latestMovies";
 
 
 const fetchMovies = () => (dispatch) => {
     dispatch({type: "GET_MOVIES_PENDING"});
 
     latestMovies()
+    .then(response => response.json())
+    .then(data => dispatch({type: "GET_MOVIES_DONE", payload:data}))
+    .catch(error => dispatch({type: "GET_MOVIES_ERR", payload:error}))
+}
+
+const fetchMoviesSearch = (query) => (dispatch) => {
+    dispatch({type: "GET_MOVIES_PENDING"});
+
+    latestMoviesSearch(query)
     .then(response => response.json())
     .then(data => dispatch({type: "GET_MOVIES_DONE", payload:data}))
     .catch(error => dispatch({type: "GET_MOVIES_ERR", payload:error}))
@@ -27,6 +36,7 @@ const addTransaction = (body) => {
 
 export {
     fetchMovies,
+    fetchMoviesSearch,
     fetchDetails,
     addTransaction
 };

@@ -9,8 +9,10 @@ import { fetchMovies } from '../redux/actions/index';
 function HomeScreen(props) {
 
   useEffect(() => {
-    props.fetchMovies();
-  }, []);
+    const focusEvent = props.navigation.addListener('focus', () => {
+      props.fetchMovies();
+    });
+  }, [props.navigation]);
 
   return (
     <View style={styles.container}>
