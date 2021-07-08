@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './Home';
 import DetailsScreen from './Details';
 import SearchHeader from './SearchHeader';
+import Booking from './Booking';
 
 const Stack = createStackNavigator();
 
@@ -33,7 +34,20 @@ function Main(props) {
                     name="Details"
                     component={DetailsScreen}
                     options={{
-                        title: 'Movie Details',
+                        title: 'Details',
+                        headerStyle: {
+                            backgroundColor: '#161616',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                        }
+                    }} />
+                    <Stack.Screen
+                    name="Booking"
+                    component={Booking}
+                    options={{
+                        title: 'Book A Showing',
                         headerStyle: {
                             backgroundColor: '#161616',
                         },

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -14,10 +14,20 @@ function HomeScreen(props) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.movieItem}>
-        {JSON.stringify(props.data)}
-        <Button title="details" onPress={() => props.navigation.navigate('Details')} />
-      </View>
+      {props.loading &&
+      <Text>LOADING...</Text>
+      }
+      {props.data && props.data.map((item, i) => {
+        return (
+          <View style={styles.movieItem} key={i}>
+            <Text style={styles.movieTitle}>{item.title}</Text>
+            <Button style={styles.movieButton} title="details" onPress={() => props.navigation.navigate('Details', {movieId: item.id})} />
+          </View>
+        );
+      })}
+      {props.error &&
+      <Text>{props.error}</Text>
+      }
     </View>
   );
 }
@@ -42,7 +52,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   movieItem: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom: '10px'
+  },
+  movieTitle: {
+    flex: 2,
+    alignItems: "baseline"
+  },
+  movieButton: {
+    flex: 1
   }
 });
 
