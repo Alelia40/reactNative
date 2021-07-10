@@ -40,7 +40,7 @@ function Booking(props) {
     return (
         <View style={styles.container}>
             <View style={styles.bookingForm}>
-                <Text style={{ fontSize: '24px', fontWeight: 'bold' }}>Reserve a Seat!</Text>
+                <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Reserve a Seat!</Text>
                 <View>
                     <Text>Movie Name - {title.toUpperCase()}</Text>
                     <Text>Ticket Type - {ticketType}</Text>

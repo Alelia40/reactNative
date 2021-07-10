@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         height: '100%'
     },
     detailText: {
-        fontSize: '14px',
+        fontSize: 14,
         fontWeight: 'bold'
     }
 });

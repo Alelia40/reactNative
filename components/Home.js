@@ -16,7 +16,7 @@ function HomeScreen(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px'}}>Currently Showing</Text>
+      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: '20px'}}>Currently Showing</Text>
       {props.loading &&
         <Text>LOADING...</Text>
       }
