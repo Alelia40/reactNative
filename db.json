@@ -143,6 +143,14 @@
       "price": "200 THB",
       "ticketType": "NORMAL",
       "id": 2
+    },
+    {
+      "name": "x",
+      "email": "x",
+      "movieId": 3,
+      "price": "300 THB",
+      "ticketType": "SUPERIOR",
+      "id": 3
     }
   ]
 }

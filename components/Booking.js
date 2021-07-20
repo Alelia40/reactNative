@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { StyleSheet, View, Text, TextInput, Button, Alert } from 'react-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { addTransaction } from '../redux/actions';
+import QRCode from 'react-qr-code';
 
 function Booking(props) {
 
@@ -26,15 +27,19 @@ function Booking(props) {
         setTicket(type.toUpperCase());
     }
 
-    function getOrderDetails(){
-        return `Would you like to order the following?
+    function getOrderDetails() {
+        let ticketvalue= `Order Details
         1x Ticket - ${title.toUpperCase()}
         seats - ${ticketType}
         price - ${ticketPrice}${currency}
 
         ${email}
         ${fullName}
-        `
+        `;
+        return <div>
+            <QRCode value={ticketvalue}/>
+            <p>{ticketvalue}</p>
+        </div>
     }
 
     return (
@@ -86,8 +91,8 @@ function Booking(props) {
                 closeOnHardwareBackPress={false}
                 showCancelButton={true}
                 showConfirmButton={true}
-                cancelText="No"
-                confirmText="Yes"
+                cancelText="Cancel"
+                confirmText="Submit"
                 confirmButtonColor="#DD6B55"
                 onCancelPressed={() => {
                     setAlertVisible(!alertVisible);
@@ -98,7 +103,7 @@ function Booking(props) {
                         name: fullName,
                         email: email,
                         movieId: id,
-                        price: ticketPrice+" "+currency,
+                        price: ticketPrice + " " + currency,
                         ticketType: ticketType
                     });
                     props.navigation.dispatch(StackActions.popToTop());
