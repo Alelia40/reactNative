@@ -28,7 +28,7 @@ function DetailsScreen(props) {
                 <View style={{ justifyCOntent: 'center', flexDirection: 'column', flex: "1" }}>
                     <View style={{ flexDirection: 'row', borderTopWidth: 1, borderBottomWidth: 1, backgroundColor: '#fff', height: '50%', marginTop: '25%' }}>
                         <View style={{ alignItems: 'center', flex: '3', borderEndWidth: 1, borderColor: 'black' }}>
-                            <Image style={{ width: '100%', height: '100%' }} source={{ uri: props.data.image }} resizeMode={'cover'}></Image>
+                            <Image style={{ width: '100%', height: '100%' }} source={{ uri: props.data.image }} resizeMode={'contain'}></Image>
                         </View>
                         <View style={{ flex: '4' }}>
                             <View style={{ flexDirection: 'row', flex: '1' }}>

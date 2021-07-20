@@ -14,7 +14,8 @@ function Booking(props) {
     const [fullName, setFullName] = useState("");
     const [ticketType, setTicket] = useState("NORMAL");
     const [ticketPrice, setPrice] = useState(prices.normal);
-    const [alertVisible, setAlertVisible] = useState(false);
+    const [orderVisible, setOrderVisible] = useState(false);
+    const [bookingVisible, setBookingVisible] = useState(false);
 
     function setSeat(type) {
         if (type === "normal") {
@@ -28,7 +29,7 @@ function Booking(props) {
     }
 
     function getOrderDetails() {
-        let ticketvalue= `Order Details
+        let ticketvalue = `Order Details
         1x Ticket - ${title.toUpperCase()}
         seats - ${ticketType}
         price - ${ticketPrice}${currency}
@@ -37,7 +38,21 @@ function Booking(props) {
         ${fullName}
         `;
         return <div>
-            <QRCode value={ticketvalue}/>
+            <p>{ticketvalue}</p>
+        </div>
+    }
+
+    function getBookingSubmission() {
+        let ticketvalue = `Booking Details
+        1x Ticket - ${title.toUpperCase()}
+        seats - ${ticketType}
+        price - ${ticketPrice}${currency}
+
+        ${email}
+        ${fullName}
+        `;
+        return <div>
+            <QRCode value={ticketvalue} />
             <p>{ticketvalue}</p>
         </div>
     }
@@ -80,10 +95,10 @@ function Booking(props) {
                         style={styles.formInput}
                     />
                 </View>
-                <Button style={{ alignSelf: 'flex-end' }} title="Submit Order" onPress={() => setAlertVisible(!alertVisible)}></Button>
+                <Button style={{ alignSelf: 'flex-end' }} title="Submit Order" onPress={() => setOrderVisible(!orderVisible)}></Button>
             </View>
             <AwesomeAlert
-                show={alertVisible}
+                show={orderVisible}
                 showProgress={false}
                 title="Order Details"
                 message={getOrderDetails()}
@@ -98,7 +113,7 @@ function Booking(props) {
                     setAlertVisible(!alertVisible);
                 }}
                 onConfirmPressed={() => {
-                    setAlertVisible(!alertVisible);
+                    setBookingVisible(!bookingVisible);
                     addTransaction({
                         name: fullName,
                         email: email,
@@ -106,6 +121,24 @@ function Booking(props) {
                         price: ticketPrice + " " + currency,
                         ticketType: ticketType
                     });
+                    setOrderVisible(!orderVisible);
+                }}
+            />
+
+            <AwesomeAlert
+                show={bookingVisible}
+                showProgress={false}
+                title="Booking Ticket"
+                message={getBookingSubmission()}
+                closeOnTouchOutside={false}
+                closeOnHardwareBackPress={false}
+                showCancelButton={false}
+                showConfirmButton={true}
+                cancelText="Cancel"
+                confirmText="Ok"
+                confirmButtonColor="#DD6B55"
+                onConfirmPressed={() => {
+                    setBookingVisible(!bookingVisible);
                     props.navigation.dispatch(StackActions.popToTop());
                 }}
             />

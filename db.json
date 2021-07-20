@@ -151,6 +151,22 @@
       "price": "300 THB",
       "ticketType": "SUPERIOR",
       "id": 3
+    },
+    {
+      "name": "x123",
+      "email": "thor@movies.com",
+      "movieId": 1,
+      "price": "200 THB",
+      "ticketType": "NORMAL",
+      "id": 4
+    },
+    {
+      "name": "logan",
+      "email": "logan@x.com",
+      "movieId": 3,
+      "price": "200 THB",
+      "ticketType": "NORMAL",
+      "id": 5
     }
   ]
 }
